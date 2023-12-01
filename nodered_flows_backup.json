@@ -1,0 +1,3908 @@
+[
+    {
+        "id": "f53b6533d6c1873d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "184908f788181c54",
+        "type": "json",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 270,
+        "y": 400,
+        "wires": [
+            [
+                "3dfe9fbed3124f59"
+            ]
+        ]
+    },
+    {
+        "id": "3dfe9fbed3124f59",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "Parse Serial",
+        "func": "var b = JSON.parse(JSON.stringify(msg.payload));\nb=msg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "7f4960a8cfb0814e",
+                "83577c49f5ebc262",
+                "7cdd8434b5655d4f",
+                "70603b8a8798692e",
+                "d9e865305e77b630",
+                "a4efa542cb483a14",
+                "fa2a8a4f2f2e85b4",
+                "5329d919f54acfdd",
+                "691ffb9eba7f1ead",
+                "bc3a5fc7ef13df38",
+                "19aecd6ba2e2f42f",
+                "fbfc1a0ef912cf41"
+            ]
+        ]
+    },
+    {
+        "id": "7f4960a8cfb0814e",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 2",
+        "func": "msg.payload=msg.payload.SENSOR1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 340,
+        "wires": [
+            [
+                "8431cc80f6ee51cf",
+                "a55250393ed6c174"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "83577c49f5ebc262",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 3",
+        "func": "msg.payload = msg.payload.SENSOR2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "58222bae96a69ad4",
+                "8a447528333ba244"
+            ]
+        ]
+    },
+    {
+        "id": "7cdd8434b5655d4f",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 4",
+        "func": "msg.payload = msg.payload.SENSOR3;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 500,
+        "wires": [
+            [
+                "4cbd48267c8b960c",
+                "d4ab93abe3e8c2b5"
+            ]
+        ]
+    },
+    {
+        "id": "70603b8a8798692e",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 5",
+        "func": "msg.payload = msg.payload.SENSOR4;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 580,
+        "wires": [
+            [
+                "55fb9c7a92f0f396",
+                "d897b3b7ea754dc5"
+            ]
+        ]
+    },
+    {
+        "id": "d9e865305e77b630",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 6",
+        "func": "msg.payload = msg.payload.SENSOR5;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 660,
+        "wires": [
+            [
+                "d3d72e4b3ee54135",
+                "cd0860d21a066ff1"
+            ]
+        ]
+    },
+    {
+        "id": "f9c23d23.c8c24",
+        "type": "exec",
+        "z": "f53b6533d6c1873d",
+        "command": "vcgencmd measure_temp",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Raspberry CPU Temperature",
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "a0ad4644.0efbf8"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a0ad4644.0efbf8",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "Extract CPU Temp",
+        "func": "const re = /^temp=(.*)'C$/gm;\nmsg.payload = Number(msg.payload.replace(re, '$1'));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 160,
+        "wires": [
+            [
+                "a5038cb87eeff159",
+                "92a6bee269a6476c"
+            ]
+        ]
+    },
+    {
+        "id": "a97d78fc.40c268",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "f9c23d23.c8c24"
+            ]
+        ]
+    },
+    {
+        "id": "a4efa542cb483a14",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 7",
+        "func": "msg.payload = msg.payload.SENSOR6;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 740,
+        "wires": [
+            [
+                "62fc1d42be136a1f",
+                "0a9712a55de46940"
+            ]
+        ]
+    },
+    {
+        "id": "7fdc12ae7b4eb6c2",
+        "type": "serial in",
+        "z": "f53b6533d6c1873d",
+        "name": "Serial From Arduino",
+        "serial": "6588e4c69574b0ea",
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "184908f788181c54"
+            ]
+        ]
+    },
+    {
+        "id": "7fb1a2533dac9386",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 860,
+        "wires": [
+            [
+                "2266502d5fef78ee"
+            ]
+        ]
+    },
+    {
+        "id": "0ba343e8e1e84c1b",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 920,
+        "wires": [
+            [
+                "2266502d5fef78ee"
+            ]
+        ]
+    },
+    {
+        "id": "6d6a262f55a04023",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 980,
+        "wires": [
+            [
+                "82561cf0dfe12dea"
+            ]
+        ]
+    },
+    {
+        "id": "468e24ca7ab0bf70",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1040,
+        "wires": [
+            [
+                "82561cf0dfe12dea"
+            ]
+        ]
+    },
+    {
+        "id": "cd10375e4fe2c18a",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1100,
+        "wires": [
+            [
+                "6ca0c2a8a4810ec4"
+            ]
+        ]
+    },
+    {
+        "id": "64a59b41fa26d106",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1160,
+        "wires": [
+            [
+                "6ca0c2a8a4810ec4"
+            ]
+        ]
+    },
+    {
+        "id": "c6c28c42853fea15",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1220,
+        "wires": [
+            [
+                "65d243d9dd65fe2f"
+            ]
+        ]
+    },
+    {
+        "id": "64c93f2d80110b96",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1280,
+        "wires": [
+            [
+                "65d243d9dd65fe2f"
+            ]
+        ]
+    },
+    {
+        "id": "802015b86e90e98c",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 1040,
+        "wires": [
+            [
+                "2266502d5fef78ee",
+                "82561cf0dfe12dea",
+                "6ca0c2a8a4810ec4",
+                "65d243d9dd65fe2f",
+                "1b73586ee313e30d",
+                "140ddf6d1304dcf1"
+            ]
+        ]
+    },
+    {
+        "id": "44062836281edfa6",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 1100,
+        "wires": [
+            [
+                "2266502d5fef78ee",
+                "82561cf0dfe12dea",
+                "6ca0c2a8a4810ec4",
+                "65d243d9dd65fe2f",
+                "1b73586ee313e30d",
+                "140ddf6d1304dcf1"
+            ]
+        ]
+    },
+    {
+        "id": "2fe5b917bec6a181",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1340,
+        "wires": [
+            [
+                "1b73586ee313e30d"
+            ]
+        ]
+    },
+    {
+        "id": "f6e3074b96646095",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 18,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1400,
+        "wires": [
+            [
+                "1b73586ee313e30d"
+            ]
+        ]
+    },
+    {
+        "id": "c24f4dfd4901768a",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1680,
+        "wires": [
+            [
+                "eb8801c5faed7c0c"
+            ]
+        ]
+    },
+    {
+        "id": "223ba61dad646c9c",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1740,
+        "wires": [
+            [
+                "eb8801c5faed7c0c"
+            ]
+        ]
+    },
+    {
+        "id": "2217b560c4a8ef7c",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1800,
+        "wires": [
+            [
+                "9a1c7f2a70f1d1a5"
+            ]
+        ]
+    },
+    {
+        "id": "cd921b7cc64ef551",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1860,
+        "wires": [
+            [
+                "9a1c7f2a70f1d1a5"
+            ]
+        ]
+    },
+    {
+        "id": "1e03c1379d85c685",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1920,
+        "wires": [
+            [
+                "b1b92612bf8862b1"
+            ]
+        ]
+    },
+    {
+        "id": "5f2eee2e6dc1a431",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 1980,
+        "wires": [
+            [
+                "b1b92612bf8862b1"
+            ]
+        ]
+    },
+    {
+        "id": "1b7cec5049dc0271",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2040,
+        "wires": [
+            [
+                "ed42771fe06f1e2d"
+            ]
+        ]
+    },
+    {
+        "id": "cf02b79451b394ec",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2100,
+        "wires": [
+            [
+                "ed42771fe06f1e2d"
+            ]
+        ]
+    },
+    {
+        "id": "a6728f31296e30f5",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1070,
+        "y": 1860,
+        "wires": [
+            [
+                "eb8801c5faed7c0c",
+                "9a1c7f2a70f1d1a5",
+                "b1b92612bf8862b1",
+                "ed42771fe06f1e2d",
+                "67d620b74e0afca0",
+                "3332f9a31a1a194d"
+            ]
+        ]
+    },
+    {
+        "id": "8e055c2c3f3782b7",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1070,
+        "y": 1920,
+        "wires": [
+            [
+                "eb8801c5faed7c0c",
+                "9a1c7f2a70f1d1a5",
+                "b1b92612bf8862b1",
+                "ed42771fe06f1e2d",
+                "67d620b74e0afca0",
+                "3332f9a31a1a194d"
+            ]
+        ]
+    },
+    {
+        "id": "82f740ef19d346f3",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2280,
+        "wires": [
+            [
+                "67d620b74e0afca0"
+            ]
+        ]
+    },
+    {
+        "id": "74471a3ef7c53eee",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 21,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2340,
+        "wires": [
+            [
+                "67d620b74e0afca0"
+            ]
+        ]
+    },
+    {
+        "id": "f025b8d9387655d3",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2160,
+        "wires": [
+            [
+                "3332f9a31a1a194d"
+            ]
+        ]
+    },
+    {
+        "id": "82995d07bcbc4123",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "b90e35d6e4057f8c",
+        "order": 18,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1250,
+        "y": 2220,
+        "wires": [
+            [
+                "3332f9a31a1a194d"
+            ]
+        ]
+    },
+    {
+        "id": "a22c5a4bd2dcb9f5",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 20,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1460,
+        "wires": [
+            [
+                "140ddf6d1304dcf1"
+            ]
+        ]
+    },
+    {
+        "id": "f4dac74a97ebabf8",
+        "type": "ui_button",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "ac6e51d4517f487e",
+        "order": 21,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 350,
+        "y": 1520,
+        "wires": [
+            [
+                "140ddf6d1304dcf1"
+            ]
+        ]
+    },
+    {
+        "id": "a55250393ed6c174",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Zone 1 Moisture",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8a447528333ba244",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Zone 2 Moisture",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "d4ab93abe3e8c2b5",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Zone 3 Moisture",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d897b3b7ea754dc5",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Cilantro & Onions",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 830,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "cd0860d21a066ff1",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Lower Peppers",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a5038cb87eeff159",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "8c66a98787136cd2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "CPU Temp",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "80",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "40",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0a9712a55de46940",
+        "type": "ui_gauge",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "group": "3a1cd39987660120",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Upper Peppers",
+        "label": "%",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 820,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "8431cc80f6ee51cf",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Zone 1",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 800,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "58222bae96a69ad4",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Zone 2",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 800,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4cbd48267c8b960c",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Zone 3",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 800,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "55fb9c7a92f0f396",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Cilantro & Onions",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 830,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "d3d72e4b3ee54135",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Lower Peppers",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 820,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "bd3b7fa603895a7e",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Master",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 950,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "827868b79d8bcf73",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Celery",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 950,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "eb36c227c2f594c1",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Chinese Cabage",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 990,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "c7dc431121011252",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tomatos",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 960,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "8ab793d797cf8f1e",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Cilantro & Onions",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 990,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "bd84f73a6f945f71",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Lower Peppers",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 980,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "6d611eb8c23f6f29",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Master",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1870,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "521172bff79b2b5e",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tomatos",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1880,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "133073648c5c0610",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Cilantro & Onions",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1910,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "b025fc9c2a5a6ed9",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Chinese Cabage",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1910,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "840804119c8bcf5f",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Celery",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 1870,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "0f0ca6fcd88f152c",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 19,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Upper Peppers",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1900,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "f0b9235d96a6eb39",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b90e35d6e4057f8c",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Lower Peppers",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1900,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "100f2f7266f8590d",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "ac6e51d4517f487e",
+        "order": 19,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Upper Peppers",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 980,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "62fc1d42be136a1f",
+        "type": "ui_text",
+        "z": "f53b6533d6c1873d",
+        "group": "b3e7e423c8830382",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Upper Peppers",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 820,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "2266502d5fef78ee",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 1 ",
+        "pin": "17",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "82561cf0dfe12dea",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 2",
+        "pin": "27",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "6ca0c2a8a4810ec4",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 3",
+        "pin": "22",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "65d243d9dd65fe2f",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 4",
+        "pin": "5",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "1b73586ee313e30d",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 5",
+        "pin": "6",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "eb8801c5faed7c0c",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 1",
+        "pin": "26",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "9a1c7f2a70f1d1a5",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 2",
+        "pin": "20",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "b1b92612bf8862b1",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 3",
+        "pin": "21",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "ed42771fe06f1e2d",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 4",
+        "pin": "13",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "67d620b74e0afca0",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 5",
+        "pin": "16",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 2300,
+        "wires": []
+    },
+    {
+        "id": "3332f9a31a1a194d",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Water Relay 6",
+        "pin": "19",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1480,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "140ddf6d1304dcf1",
+        "type": "rpi-gpio out",
+        "z": "f53b6533d6c1873d",
+        "name": "Moisure Sensor 6",
+        "pin": "12",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 590,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "fa2a8a4f2f2e85b4",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 8",
+        "func": "let Read = msg.payload=msg.payload.SENSOR1;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 340,
+        "wires": [
+            [
+                "2c8afbd9cbd8fea8"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "2c8afbd9cbd8fea8",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Celery",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\":0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1290,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5329d919f54acfdd",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 9",
+        "func": "let Read = msg.payload=msg.payload.SENSOR2;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 420,
+        "wires": [
+            [
+                "e36200108b29b3bd"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "e36200108b29b3bd",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Chinese Cabage",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\": 0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1330,
+        "y": 420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "691ffb9eba7f1ead",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 10",
+        "func": "let Read = msg.payload=msg.payload.SENSOR3;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 500,
+        "wires": [
+            [
+                "a49c2df440dac279"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "a49c2df440dac279",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Tomatos",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\": 0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1290,
+        "y": 500,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bc3a5fc7ef13df38",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 11",
+        "func": "let Read = msg.payload=msg.payload.SENSOR4;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 580,
+        "wires": [
+            [
+                "fa4da7389914f875"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "fa4da7389914f875",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Cilantro & Onions",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\": 0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1320,
+        "y": 580,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "19aecd6ba2e2f42f",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 12",
+        "func": "let Read = msg.payload=msg.payload.SENSOR5;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 660,
+        "wires": [
+            [
+                "89d2e153324fb3ea"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "89d2e153324fb3ea",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Lower Peppers",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\": 0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1310,
+        "y": 660,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fbfc1a0ef912cf41",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 13",
+        "func": "let Read = msg.payload=msg.payload.SENSOR6;\nmsg = {\n    \"payload\": {\n        \"CurrentRelativeHumidity\": Read\n    }\n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 740,
+        "wires": [
+            [
+                "5981a147a9c09584"
+            ]
+        ],
+        "outputLabels": [
+            "Humidity "
+        ]
+    },
+    {
+        "id": "5981a147a9c09584",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Upper Peppers",
+        "serviceName": "HumiditySensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentRelativeHumidity\": 0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1310,
+        "y": 740,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7114e48680f8b6f1",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 1430,
+        "y": 1020,
+        "wires": [
+            [
+                "ad37b6ddd29583ba"
+            ]
+        ]
+    },
+    {
+        "id": "8f3a5875f8db02cb",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 1430,
+        "y": 1060,
+        "wires": [
+            [
+                "ad37b6ddd29583ba"
+            ]
+        ]
+    },
+    {
+        "id": "ad37b6ddd29583ba",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Master Moisture Sensor Switch",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1690,
+        "y": 1040,
+        "wires": [
+            [
+                "1bb03609f4ace778"
+            ],
+            [
+                "1bb03609f4ace778"
+            ]
+        ]
+    },
+    {
+        "id": "1bb03609f4ace778",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1680,
+        "y": 1140,
+        "wires": [
+            [
+                "c4bb5ca595ab0f07"
+            ]
+        ]
+    },
+    {
+        "id": "c4bb5ca595ab0f07",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1750,
+        "y": 1220,
+        "wires": [
+            [
+                "802015b86e90e98c"
+            ],
+            [
+                "44062836281edfa6"
+            ]
+        ]
+    },
+    {
+        "id": "92f51e0fd1b296e8",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1720,
+        "wires": [
+            [
+                "4db9bde063cddbc3"
+            ]
+        ]
+    },
+    {
+        "id": "47e036404bc833cb",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1760,
+        "wires": [
+            [
+                "4db9bde063cddbc3"
+            ]
+        ]
+    },
+    {
+        "id": "4db9bde063cddbc3",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Master Water Relay",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 1740,
+        "wires": [
+            [
+                "c845d048646c039b"
+            ],
+            [
+                "c845d048646c039b"
+            ]
+        ]
+    },
+    {
+        "id": "c845d048646c039b",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 1740,
+        "wires": [
+            [
+                "204733bfa7494d3f"
+            ]
+        ]
+    },
+    {
+        "id": "204733bfa7494d3f",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 1740,
+        "wires": [
+            [
+                "a6728f31296e30f5"
+            ],
+            [
+                "8e055c2c3f3782b7"
+            ]
+        ]
+    },
+    {
+        "id": "89f27b6d4a943fff",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1820,
+        "wires": [
+            [
+                "aab21635f84fbba1"
+            ]
+        ]
+    },
+    {
+        "id": "184a28d17b9144c9",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1860,
+        "wires": [
+            [
+                "aab21635f84fbba1"
+            ]
+        ]
+    },
+    {
+        "id": "aab21635f84fbba1",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Tomatos",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 300,
+        "y": 1840,
+        "wires": [
+            [
+                "b705439b16c33677"
+            ],
+            [
+                "b705439b16c33677"
+            ]
+        ]
+    },
+    {
+        "id": "b705439b16c33677",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 1840,
+        "wires": [
+            [
+                "b9d5661ff33d0183"
+            ]
+        ]
+    },
+    {
+        "id": "b9d5661ff33d0183",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 1840,
+        "wires": [
+            [
+                "c24f4dfd4901768a"
+            ],
+            [
+                "223ba61dad646c9c"
+            ]
+        ]
+    },
+    {
+        "id": "6961890b78f91f6d",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1940,
+        "wires": [
+            [
+                "78ae1bc4d6e2f68c"
+            ]
+        ]
+    },
+    {
+        "id": "339d056a474abe94",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 1980,
+        "wires": [
+            [
+                "78ae1bc4d6e2f68c"
+            ]
+        ]
+    },
+    {
+        "id": "78ae1bc4d6e2f68c",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Cilantro & Onion",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 1960,
+        "wires": [
+            [
+                "e282eaebbf7e1e3b"
+            ],
+            [
+                "e282eaebbf7e1e3b"
+            ]
+        ]
+    },
+    {
+        "id": "e282eaebbf7e1e3b",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 1960,
+        "wires": [
+            [
+                "e8495a6d2a088304"
+            ]
+        ]
+    },
+    {
+        "id": "e8495a6d2a088304",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 1960,
+        "wires": [
+            [
+                "2217b560c4a8ef7c"
+            ],
+            [
+                "cd921b7cc64ef551"
+            ]
+        ]
+    },
+    {
+        "id": "2904cbbd07728c56",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2040,
+        "wires": [
+            [
+                "f892b4a1771ea811"
+            ]
+        ]
+    },
+    {
+        "id": "00a766c5980d7b78",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2100,
+        "wires": [
+            [
+                "f892b4a1771ea811"
+            ]
+        ]
+    },
+    {
+        "id": "f892b4a1771ea811",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Chinese Cabage",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 2080,
+        "wires": [
+            [
+                "eadf4fe8bac8f57a"
+            ],
+            [
+                "eadf4fe8bac8f57a"
+            ]
+        ]
+    },
+    {
+        "id": "eadf4fe8bac8f57a",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 2080,
+        "wires": [
+            [
+                "ff55851be17581d3"
+            ]
+        ]
+    },
+    {
+        "id": "ff55851be17581d3",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 2080,
+        "wires": [
+            [
+                "1e03c1379d85c685"
+            ],
+            [
+                "5f2eee2e6dc1a431"
+            ]
+        ]
+    },
+    {
+        "id": "d9f2d69a68d5e3a8",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2160,
+        "wires": [
+            [
+                "84bef3a609fc4f79"
+            ]
+        ]
+    },
+    {
+        "id": "e7beaf95c4628a31",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2200,
+        "wires": [
+            [
+                "84bef3a609fc4f79"
+            ]
+        ]
+    },
+    {
+        "id": "84bef3a609fc4f79",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Celery",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 2180,
+        "wires": [
+            [
+                "c0d34de173b1d784"
+            ],
+            [
+                "c0d34de173b1d784"
+            ]
+        ]
+    },
+    {
+        "id": "c0d34de173b1d784",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 2180,
+        "wires": [
+            [
+                "2aaefdd0e63f78cb"
+            ]
+        ]
+    },
+    {
+        "id": "2aaefdd0e63f78cb",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 2180,
+        "wires": [
+            [
+                "1b7cec5049dc0271"
+            ],
+            [
+                "cf02b79451b394ec"
+            ]
+        ]
+    },
+    {
+        "id": "f47ce94325be3e9b",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2280,
+        "wires": [
+            [
+                "7a7ec25890d19d6f"
+            ]
+        ]
+    },
+    {
+        "id": "bf4a2d96afacd247",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2320,
+        "wires": [
+            [
+                "7a7ec25890d19d6f"
+            ]
+        ]
+    },
+    {
+        "id": "7a7ec25890d19d6f",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Lower Peppers",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 2300,
+        "wires": [
+            [
+                "a63657d75a8264a3"
+            ],
+            [
+                "a63657d75a8264a3"
+            ]
+        ]
+    },
+    {
+        "id": "a63657d75a8264a3",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 2300,
+        "wires": [
+            [
+                "efd64180edba994f"
+            ]
+        ]
+    },
+    {
+        "id": "efd64180edba994f",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 2300,
+        "wires": [
+            [
+                "f025b8d9387655d3"
+            ],
+            [
+                "82995d07bcbc4123"
+            ]
+        ]
+    },
+    {
+        "id": "9299b3b9f1e727de",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "On",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":true}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2400,
+        "wires": [
+            [
+                "39e1f3855f4680da"
+            ]
+        ]
+    },
+    {
+        "id": "3e956b634b4bae2a",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2440,
+        "wires": [
+            [
+                "39e1f3855f4680da"
+            ]
+        ]
+    },
+    {
+        "id": "39e1f3855f4680da",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Upper Peppers",
+        "serviceName": "Switch",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "Default Model",
+        "serialNo": "1.1.1",
+        "firmwareRev": "1.1.1",
+        "hardwareRev": "1.1.1",
+        "softwareRev": "1.0.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 2420,
+        "wires": [
+            [
+                "8d5b0bce217f5fce"
+            ],
+            [
+                "8d5b0bce217f5fce"
+            ]
+        ]
+    },
+    {
+        "id": "8d5b0bce217f5fce",
+        "type": "change",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload.On",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 2420,
+        "wires": [
+            [
+                "8450707e42da77a4"
+            ]
+        ]
+    },
+    {
+        "id": "8450707e42da77a4",
+        "type": "switch",
+        "z": "f53b6533d6c1873d",
+        "name": "",
+        "property": "payload.On",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 2420,
+        "wires": [
+            [
+                "82f740ef19d346f3"
+            ],
+            [
+                "74471a3ef7c53eee"
+            ]
+        ]
+    },
+    {
+        "id": "be157bd05aac3156",
+        "type": "homekit-service",
+        "z": "f53b6533d6c1873d",
+        "isParent": true,
+        "hostType": "0",
+        "bridge": "fd9c5ea2af8ed0af",
+        "accessoryId": "",
+        "parentService": "",
+        "name": "Pi CPU Temp",
+        "serviceName": "TemperatureSensor",
+        "topic": "",
+        "filter": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "cameraConfigVideoProcessor": "ffmpeg",
+        "cameraConfigSource": "",
+        "cameraConfigStillImageSource": "",
+        "cameraConfigMaxStreams": 2,
+        "cameraConfigMaxWidth": 1280,
+        "cameraConfigMaxHeight": 720,
+        "cameraConfigMaxFPS": 10,
+        "cameraConfigMaxBitrate": 300,
+        "cameraConfigVideoCodec": "libx264",
+        "cameraConfigAudioCodec": "libfdk_aac",
+        "cameraConfigAudio": false,
+        "cameraConfigPacketSize": 1316,
+        "cameraConfigVerticalFlip": false,
+        "cameraConfigHorizontalFlip": false,
+        "cameraConfigMapVideo": "0:0",
+        "cameraConfigMapAudio": "0:1",
+        "cameraConfigVideoFilter": "scale=1280:720",
+        "cameraConfigAdditionalCommandLine": "-tune zerolatency",
+        "cameraConfigDebug": false,
+        "cameraConfigSnapshotOutput": "disabled",
+        "cameraConfigInterfaceName": "",
+        "characteristicProperties": "{\"CurrentTemperature\":0}",
+        "waitForSetupMsg": false,
+        "outputs": 2,
+        "x": 1080,
+        "y": 160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "92a6bee269a6476c",
+        "type": "function",
+        "z": "f53b6533d6c1873d",
+        "name": "function 14",
+        "func": "let Read = msg.payload = msg.payload;\nmsg = {\n    \"payload\": {\n        \"CurrentTemperature\": Read\n    }\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 100,
+        "wires": [
+            [
+                "be157bd05aac3156"
+            ]
+        ]
+    },
+    {
+        "id": "31ab927dbbdf4a38",
+        "type": "inject",
+        "z": "f53b6533d6c1873d",
+        "name": "Off",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"On\":false}",
+        "payloadType": "json",
+        "x": 110,
+        "y": 2140,
+        "wires": [
+            [
+                "f892b4a1771ea811"
+            ]
+        ]
+    },
+    {
+        "id": "6588e4c69574b0ea",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "ac6e51d4517f487e",
+        "type": "ui_group",
+        "name": "Moisture Sensor Control",
+        "tab": "ae7c3f33668f2be3",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b90e35d6e4057f8c",
+        "type": "ui_group",
+        "name": "Master Relay Control",
+        "tab": "ae7c3f33668f2be3",
+        "order": 16,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3a1cd39987660120",
+        "type": "ui_group",
+        "name": "Gauges",
+        "tab": "ae7c3f33668f2be3",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8c66a98787136cd2",
+        "type": "ui_group",
+        "name": "Pi Gauges",
+        "tab": "ae7c3f33668f2be3",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b3e7e423c8830382",
+        "type": "ui_group",
+        "name": "Moisture Sensors",
+        "tab": "ae7c3f33668f2be3",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fd9c5ea2af8ed0af",
+        "type": "homekit-bridge",
+        "bridgeName": "Garden Bridge",
+        "pinCode": "928-63-645",
+        "port": "",
+        "advertiser": "bonjour-hap",
+        "allowInsecureRequest": false,
+        "manufacturer": "NRCHKB",
+        "model": "1.5.0",
+        "serialNo": "Default Serial Number",
+        "firmwareRev": "1.5.0",
+        "hardwareRev": "1.5.0",
+        "softwareRev": "1.5.0",
+        "customMdnsConfig": false,
+        "mdnsMulticast": true,
+        "mdnsInterface": "",
+        "mdnsPort": "",
+        "mdnsIp": "",
+        "mdnsTtl": "",
+        "mdnsLoopback": true,
+        "mdnsReuseAddr": true,
+        "allowMessagePassthrough": true
+    },
+    {
+        "id": "ae7c3f33668f2be3",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
